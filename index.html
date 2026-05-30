@@ -191,11 +191,10 @@ footer{background:var(--ink);padding:1.5rem 3rem;display:flex;align-items:center
 
 <section class="hero">
   <div class="hero-photo">
-    <div class="hero-photo-placeholder">
-      <svg width="40" height="40" viewBox="0 0 44 44" fill="none" stroke="white" stroke-width="1.2" stroke-linecap="round"><circle cx="22" cy="16" r="7"/><path d="M6 38c0-8.837 7.163-16 16-16s16 7.163 16 16"/></svg>
-      <p>assets/images/hero.webp</p>
-      <small>900×1200px desktop · 800×800px mobile</small>
-    </div>
+    <picture>
+      <source media="(max-width:768px)" srcset="assets/images/hero-mobile.webp">
+      <img class="hero-img" src="assets/images/hero-desktop.webp" alt="Stanly Serang" loading="eager">
+    </picture>
   </div>
   <div class="hero-fade"></div>
   <div class="hero-content">
