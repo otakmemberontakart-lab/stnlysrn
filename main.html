@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --cream:#FAFAF7;--white:#FFFFFF;--ink:#141412;--ink-light:#3D3D38;
+  --ink-muted:#8C8C84;--border:#E4E0D6;
+  --accent:#e26d06;--accent-pale:#FDF0E3;--accent-dark:#bf5c04;
+}
+body{background:var(--cream);color:var(--ink);font-family:'DM Sans',sans-serif;overflow-x:hidden}
+
+/* NAV DESKTOP */
+.nav-desktop{position:fixed;top:0;left:0;right:0;z-index:200;padding:1.3rem 3rem;display:flex;align-items:center;justify-content:space-between;background:rgba(250,250,247,0.92);backdrop-filter:blur(16px);border-bottom:0.5px solid var(--border)}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:600;letter-spacing:0.08em;color:var(--ink);text-decoration:none}
+.nav-links{display:flex;align-items:center;gap:2.2rem}
+.nav-links a{font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-muted);text-decoration:none;transition:color 0.2s}
+.nav-links a:hover{color:var(--accent)}
+.lang-pill{font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);cursor:pointer;border:0.5px solid var(--accent);padding:0.28rem 0.75rem;border-radius:20px;transition:all 0.2s;background:transparent;font-family:'DM Sans',sans-serif}
+.lang-pill:hover{background:var(--accent-pale)}
+
+/* NAV MOBILE */
+.nav-mobile{display:none;position:fixed;bottom:0;left:0;right:0;z-index:200;background:rgba(250,250,247,0.96);backdrop-filter:blur(20px);border-top:0.5px solid var(--border);padding:0.5rem 0 calc(0.5rem + env(safe-area-inset-bottom))}
+.nav-mobile-inner{display:flex;justify-content:space-around;align-items:center}
+.nav-mob-item{display:flex;flex-direction:column;align-items:center;gap:0.2rem;padding:0.4rem 0.8rem;cursor:pointer;text-decoration:none;color:var(--ink-muted);transition:color 0.2s;background:none;border:none;font-family:'DM Sans',sans-serif}
+.nav-mob-item.active{color:var(--accent)}
+.nav-mob-item svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+.nav-mob-label{font-size:0.58rem;letter-spacing:0.06em;text-transform:uppercase;font-weight:500}
+
+/* MORE DRAWER */
+.more-overlay{display:none;position:fixed;inset:0;z-index:190;background:rgba(20,20,18,0.4);backdrop-filter:blur(4px)}
+.more-overlay.open{display:block}
+.more-drawer{position:fixed;bottom:0;left:0;right:0;z-index:195;background:var(--cream);border-top:0.5px solid var(--border);border-radius:16px 16px 0 0;padding:1.2rem 2rem calc(5rem + env(safe-area-inset-bottom));transform:translateY(100%);transition:transform 0.3s cubic-bezier(0.32,0.72,0,1)}
+.more-drawer.open{transform:translateY(0)}
+.drawer-handle{width:36px;height:3px;background:var(--border);border-radius:2px;margin:0 auto 1.4rem}
+.drawer-item{display:flex;align-items:center;gap:1rem;padding:1rem 0;border-bottom:0.5px solid var(--border);text-decoration:none;color:var(--ink)}
+.drawer-item:last-child{border-bottom:none}
+.drawer-item-icon{width:36px;height:36px;background:var(--accent-pale);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--accent)}
+.drawer-item-icon svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+.drawer-item-label{font-size:0.9rem;color:var(--ink);font-weight:400}
+.drawer-item-sub{font-size:0.68rem;color:var(--ink-muted);margin-top:1px}
+.drawer-lang{margin-top:1.2rem;display:flex;align-items:center;justify-content:space-between;padding:0.8rem 1rem;border:0.5px solid var(--border);border-radius:8px;background:var(--white);cursor:pointer}
+.drawer-lang-label{font-size:0.75rem;color:var(--ink-muted)}
+.drawer-lang-val{font-size:0.75rem;color:var(--accent);font-weight:500;letter-spacing:0.08em;text-transform:uppercase}
+
+/* HERO */
+.hero{min-height:100vh;position:relative;overflow:hidden;display:flex;align-items:center}
+.hero-photo{position:absolute;right:0;top:0;bottom:0;width:55%;background:linear-gradient(135deg,#C8C0B0 0%,#A09080 50%,#7A7068 100%);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.hero-img{width:100%;height:100%;object-fit:cover;object-position:center top}
+.hero-photo-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:rgba(255,255,255,0.45);gap:0.5rem}
+.hero-photo-placeholder p{font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase}
+.hero-photo-placeholder small{font-size:0.58rem;opacity:0.55}
+.hero-fade{position:absolute;left:0;top:0;bottom:0;width:52%;background:linear-gradient(to right,var(--cream) 55%,transparent 100%);z-index:1}
+.hero-content{position:relative;z-index:2;padding:8rem 3rem 4rem;max-width:640px}
+.hero-label{font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);font-weight:500;display:flex;align-items:center;gap:0.7rem;margin-bottom:1.6rem}
+.hero-label::before{content:'';width:20px;height:0.5px;background:var(--accent);display:block}
+.hero-head{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,5.5vw,6rem);font-weight:300;line-height:1.02;letter-spacing:-0.02em;color:var(--ink);margin-bottom:2rem}
+.hero-head em{font-style:italic;color:var(--accent)}
+
+/* STATS — no year */
+.hero-stats{display:flex;flex-direction:column;border-top:0.5px solid var(--border);border-bottom:0.5px solid var(--border);margin-bottom:2rem}
+.stat-row{display:flex;align-items:flex-start;padding:0.9rem 0;border-bottom:0.5px solid var(--border);gap:0}
+.stat-row:last-child{border-bottom:none}
+.stat-body{display:flex;flex-direction:column;gap:0.4rem}
+.stat-role{font-size:0.82rem;color:var(--ink-light);font-weight:500;letter-spacing:0.01em}
+.stat-tags{display:flex;flex-wrap:wrap;gap:0.3rem}
+.tag{font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);border:0.5px solid var(--accent);padding:0.15rem 0.5rem;border-radius:20px;background:transparent;font-weight:500;transition:background 0.2s}
+.tag:hover{background:var(--accent-pale)}
+.stat-sub{font-size:0.65rem;color:var(--ink-muted);letter-spacing:0.04em}
+
+.hero-desc{font-size:0.9rem;line-height:1.85;color:var(--ink-muted);font-weight:300;max-width:420px;margin-bottom:2rem}
+.hero-cta{display:flex;align-items:center;gap:1.4rem}
+.btn-primary{display:inline-flex;align-items:center;gap:0.6rem;background:var(--accent);color:#fff;padding:0.85rem 1.8rem;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:500;transition:background 0.2s;text-decoration:none}
+.btn-primary:hover{background:var(--accent-dark)}
+.btn-primary svg{stroke:#fff;fill:none;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round;transition:transform 0.2s}
+.btn-primary:hover svg{transform:translateX(3px)}
+.btn-ghost{font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-muted);text-decoration:none;border-bottom:0.5px solid transparent;transition:all 0.2s;padding-bottom:2px}
+.btn-ghost:hover{color:var(--accent);border-color:var(--accent)}
+
+/* CARDS */
+.cards-section{max-width:1200px;margin:0 auto;padding:0 3rem 5rem}
+.divider{width:100%;height:0.5px;background:var(--border);margin-bottom:3.5rem}
+.sec-eyebrow{font-size:0.66rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);margin-bottom:1.8rem;display:flex;align-items:center;gap:0.6rem}
+.sec-eyebrow::before{content:'';width:16px;height:0.5px;background:var(--accent);display:block}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);border:0.5px solid var(--border)}
+.card{padding:1.8rem 1.4rem 1.5rem;border-right:0.5px solid var(--border);text-decoration:none;color:inherit;display:block;transition:background 0.2s;background:var(--white);position:relative;overflow:hidden}
+.card:last-child{border-right:none}
+.card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform 0.3s}
+.card:hover{background:var(--accent-pale)}
+.card:hover::after{transform:scaleX(1)}
+.card-num{font-size:0.6rem;letter-spacing:0.15em;color:var(--accent);margin-bottom:1rem}
+.card-title{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:400;color:var(--ink);margin-bottom:0.5rem}
+.card-desc{font-size:0.7rem;color:var(--ink-muted);line-height:1.65}
+.card-link{margin-top:1.8rem;font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent)}
+
+/* FOOTER */
+footer{background:var(--ink);padding:1.5rem 3rem;display:flex;align-items:center;justify-content:space-between}
+.footer-name{font-family:'Cormorant Garamond',serif;font-size:1rem;color:rgba(250,250,247,0.4)}
+.footer-links{display:flex;gap:1.8rem}
+.footer-links a{font-size:0.68rem;letter-spacing:0.08em;text-transform:uppercase;color:rgba(250,250,247,0.45);text-decoration:none;transition:color 0.2s}
+.footer-links a:hover{color:var(--accent)}
+.footer-email{font-size:0.68rem;color:rgba(250,250,247,0.3)}
+
+/* MOBILE */
+@media(max-width:768px){
+  .nav-desktop{display:none}
+  .nav-mobile{display:block}
+  body{padding-bottom:70px}
+  .hero{min-height:100svh;align-items:flex-end}
+  .hero-photo{width:100%;height:60%;top:0;bottom:auto}
+  .hero-fade{width:100%;height:65%;top:auto;bottom:0;left:0;background:linear-gradient(to top,var(--cream) 60%,transparent 100%)}
+  .hero-content{padding:0 1.5rem 2.5rem;max-width:100%;width:100%}
+  .hero-label{margin-bottom:0.8rem;font-size:0.62rem}
+  .hero-head{font-size:2.8rem;margin-bottom:1.4rem}
+  .hero-desc{font-size:0.82rem;max-width:100%}
+  .hero-cta{flex-direction:column;align-items:flex-start;gap:1rem}
+  .btn-primary{width:100%;justify-content:center;padding:1rem 1.8rem}
+  .cards-section{padding:0 1.5rem 2rem}
+  .cards{grid-template-columns:repeat(2,1fr)}
+  .card:nth-child(2){border-right:none}
+  .card:nth-child(3){border-right:0.5px solid var(--border);border-top:0.5px solid var(--border)}
+  .card:nth-child(4){border-right:none;border-top:0.5px solid var(--border)}
+  footer{flex-direction:column;gap:1rem;padding:1.5rem;text-align:center}
+  .footer-links{flex-wrap:wrap;justify-content:center;gap:1rem}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav-desktop">
+  <a class="nav-logo" href="#">SS</a>
+  <div class="nav-links">
+    <a href="#" id="n-about">Tentang</a>
+    <a href="#">Photo</a>
+    <a href="#">Music</a>
+    <a href="#">Video</a>
+    <a href="#">Services</a>
+    <a href="#">Contact</a>
+  </div>
+  <button class="lang-pill" id="lang-btn-d">EN</button>
+</nav>
+
+<nav class="nav-mobile">
+  <div class="nav-mobile-inner">
+    <a class="nav-mob-item active" href="#">
+      <svg viewBox="0 0 24 24"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/></svg>
+      <span class="nav-mob-label" id="ml-home">Home</span>
+    </a>
+    <a class="nav-mob-item" href="#">
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+      <span class="nav-mob-label">Photo</span>
+    </a>
+    <a class="nav-mob-item" href="#">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg>
+      <span class="nav-mob-label">Music</span>
+    </a>
+    <a class="nav-mob-item" href="#">
+      <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+      <span class="nav-mob-label">Video</span>
+    </a>
+    <button class="nav-mob-item" id="more-btn">
+      <svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.5" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/><circle cx="19" cy="12" r="1.5" fill="currentColor" stroke="none"/></svg>
+      <span class="nav-mob-label" id="ml-more">More</span>
+    </button>
+  </div>
+</nav>
+
+<div class="more-overlay" id="more-overlay"></div>
+<div class="more-drawer" id="more-drawer">
+  <div class="drawer-handle"></div>
+  <a class="drawer-item" href="#">
+    <div class="drawer-item-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.582-7 8-7s8 3 8 7"/></svg></div>
+    <div><div class="drawer-item-label" id="d-about">Tentang Saya</div><div class="drawer-item-sub" id="d-about-sub">Profil & perjalanan</div></div>
+  </a>
+  <a class="drawer-item" href="#">
+    <div class="drawer-item-icon"><svg viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg></div>
+    <div><div class="drawer-item-label" id="d-services">Services</div><div class="drawer-item-sub" id="d-services-sub">Foto, konten & social media</div></div>
+  </a>
+  <a class="drawer-item" href="#">
+    <div class="drawer-item-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+    <div><div class="drawer-item-label" id="d-contact">Contact</div><div class="drawer-item-sub" id="d-contact-sub">Hire Me · Kolaborasi</div></div>
+  </a>
+  <div class="drawer-lang" id="lang-btn-m">
+    <span class="drawer-lang-label" id="d-lang-label">Ganti Bahasa</span>
+    <span class="drawer-lang-val" id="d-lang-val">EN</span>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="hero-photo">
+    <picture>
+      <source media="(max-width:768px)" srcset="assets/images/hero-mobile.webp">
+      <img class="hero-img" src="assets/images/hero-desktop.webp" alt="Stanly Serang" loading="eager">
+    </picture>
+  </div>
+  <div class="hero-fade"></div>
+  <div class="hero-content">
+    <div class="hero-label" id="h-label">Yogyakarta, Indonesia</div>
+    <h1 class="hero-head" id="h-head">Hei —<br>ini <em>Stanly.</em></h1>
+    <div class="hero-stats">
+      <div class="stat-row">
+        <div class="stat-body">
+          <div class="stat-role">Photographer</div>
+          <div class="stat-tags">
+            <span class="tag">Street</span>
+            <span class="tag">Documentary</span>
+            <span class="tag">Staged</span>
+            <span class="tag">Creative Image</span>
+          </div>
+        </div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-body">
+          <div class="stat-role">Social Media Specialist</div>
+          <div class="stat-sub" id="s2-sub">Digital marketing & brand communication</div>
+        </div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-body">
+          <div class="stat-role">Content Creator</div>
+          <div class="stat-sub" id="s3-sub">Konten strategis lintas platform & industri</div>
+        </div>
+      </div>
+    </div>
+    <p class="hero-desc" id="h-desc">Konten yang kuat bukan hanya estetik — punya arah dan tujuan jelas. Visual storyteller yang mengedepankan pendekatan kontekstual, konsisten, dan relevan.</p>
+    <div class="hero-cta">
+      <a class="btn-primary" href="#">
+        <span id="btn-txt">Jelajahi</span>
+        <svg width="13" height="13" viewBox="0 0 13 13"><path d="M1.5 6.5h10M7.5 2.5l4 4-4 4"/></svg>
+      </a>
+      <a class="btn-ghost" href="#" id="btn-hire">Hire Me</a>
+    </div>
+  </div>
+</section>
+
+<div class="cards-section">
+  <div class="divider"></div>
+  <div class="sec-eyebrow" id="sec-eye">Jelajahi</div>
+  <div class="cards">
+    <a class="card" href="photo.html"><div class="card-num">01</div><div class="card-title">Photo</div><div class="card-desc" id="c1">Karya fotografi & penghargaan internasional dari 35Awards</div><div class="card-link" id="cl1">Buka →</div></a>
+    <a class="card" href="music.html"><div class="card-num">02</div><div class="card-title">Music</div><div class="card-desc" id="c2">Dengarkan di Spotify & Apple Music</div><div class="card-link" id="cl2">Buka →</div></a>
+    <a class="card" href="video.html"><div class="card-num">03</div><div class="card-title">Video</div><div class="card-desc" id="c3">Konten & karya video di YouTube</div><div class="card-link" id="cl3">Buka →</div></a>
+    <a class="card" href="services.html"><div class="card-num">04</div><div class="card-title">Services</div><div class="card-desc" id="c4">Layanan foto, konten & social media management</div><div class="card-link" id="cl4">Buka →</div></a>
+  </div>
+</div>
+
+<footer>
+  <span class="footer-name">Stanly Serang</span>
+  <div class="footer-links">
+    <a href="https://instagram.com/otakmemberontak" target="_blank">Instagram</a>
+    <a href="https://tiktok.com/@musikbermusik" target="_blank">TikTok</a>
+    <a href="https://youtube.com/stanlyseran" target="_blank">YouTube</a>
+    <a href="https://linkedin.com/in/stly2207" target="_blank">LinkedIn</a>
+  </div>
+  <span class="footer-email">otakmemberontak.art@gmail.com</span>
+</footer>
+
+<script>
+const moreBtn=document.getElementById('more-btn');
+const moreDrawer=document.getElementById('more-drawer');
+const moreOverlay=document.getElementById('more-overlay');
+function toggleMore(o){moreDrawer.classList.toggle('open',o);moreOverlay.classList.toggle('open',o)}
+moreBtn.addEventListener('click',()=>toggleMore(true));
+moreOverlay.addEventListener('click',()=>toggleMore(false));
+
+const T={
+  id:{lang:'EN',about:'Tentang',label:'Yogyakarta, Indonesia',head:'Hei —<br>ini <em>Stanly.</em>',s2:'Digital marketing & brand communication',s3:'Konten strategis lintas platform & industri',desc:'Konten yang kuat bukan hanya estetik — punya arah dan tujuan jelas. Visual storyteller yang mengedepankan pendekatan kontekstual, konsisten, dan relevan.',btn:'Jelajahi',hire:'Hire Me',eye:'Jelajahi',c1:'Karya fotografi & penghargaan internasional dari 35Awards',c2:'Dengarkan di Spotify & Apple Music',c3:'Konten & karya video di YouTube',c4:'Layanan foto, konten & social media management',open:'Buka →',dlang:'Ganti Bahasa',dabout:'Tentang Saya',daboutsub:'Profil & perjalanan',dservices:'Services',dservicessub:'Foto, konten & social media',dcontact:'Contact',dcontactsub:'Hire Me · Kolaborasi',mhome:'Home',mmore:'More'},
+  en:{lang:'ID',about:'About',label:'Yogyakarta, Indonesia',head:"Hi —<br>it's <em>Stanly.</em>",s2:'Digital marketing & brand communication',s3:'Strategic content across platforms & industries',desc:"Great content isn't just aesthetic — it has clear direction and purpose. A visual storyteller with a contextual, consistent, and relevant approach.",btn:'Explore',hire:'Hire Me',eye:'Explore',c1:'Photography works & international awards from 35Awards',c2:'Listen on Spotify & Apple Music',c3:'Content & video works on YouTube',c4:'Photography, content & social media management services',open:'Open →',dlang:'Switch Language',dabout:'About Me',daboutsub:'Profile & journey',dservices:'Services',dservicessub:'Photo, content & social media',dcontact:'Contact',dcontactsub:'Hire Me · Collaborate',mhome:'Home',mmore:'More'}
+};
+let lang='id';
+function applyLang(l){
+  const t=T[l];
+  document.getElementById('lang-btn-d').textContent=t.lang;
+  document.getElementById('d-lang-val').textContent=t.lang;
+  document.getElementById('n-about').textContent=t.about;
+  document.getElementById('h-label').textContent=t.label;
+  document.getElementById('h-head').innerHTML=t.head;
+  document.getElementById('s2-sub').textContent=t.s2;
+  document.getElementById('s3-sub').textContent=t.s3;
+  document.getElementById('h-desc').textContent=t.desc;
+  document.getElementById('btn-txt').textContent=t.btn;
+  document.getElementById('btn-hire').textContent=t.hire;
+  document.getElementById('sec-eye').textContent=t.eye;
+  document.getElementById('c1').textContent=t.c1;
+  document.getElementById('c2').textContent=t.c2;
+  document.getElementById('c3').textContent=t.c3;
+  document.getElementById('c4').textContent=t.c4;
+  ['cl1','cl2','cl3','cl4'].forEach(id=>document.getElementById(id).textContent=t.open);
+  document.getElementById('d-lang-label').textContent=t.dlang;
+  document.getElementById('d-about').textContent=t.dabout;
+  document.getElementById('d-about-sub').textContent=t.daboutsub;
+  document.getElementById('d-services').textContent=t.dservices;
+  document.getElementById('d-services-sub').textContent=t.dservicessub;
+  document.getElementById('d-contact').textContent=t.dcontact;
+  document.getElementById('d-contact-sub').textContent=t.dcontactsub;
+  document.getElementById('ml-home').textContent=t.mhome;
+  document.getElementById('ml-more').textContent=t.mmore;
+}
+document.getElementById('lang-btn-d').addEventListener('click',()=>{lang=lang==='id'?'en':'id';applyLang(lang)});
+document.getElementById('lang-btn-m').addEventListener('click',()=>{lang=lang==='id'?'en':'id';applyLang(lang);toggleMore(false)});
+</script>
+</body>
+</html>
