@@ -48,13 +48,20 @@ body{background:var(--cream);color:var(--ink);font-family:'DM Sans',sans-serif;o
 
 /* HERO */
 .hero{min-height:100vh;position:relative;overflow:hidden;display:flex;align-items:center}
-.hero-photo{position:absolute;right:0;top:0;bottom:0;width:55%;background:linear-gradient(135deg,#C8C0B0 0%,#A09080 50%,#7A7068 100%);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.hero-photo{position:absolute;inset:0;overflow:hidden}
 .hero-img{width:100%;height:100%;object-fit:cover;object-position:center top}
-.hero-photo-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:rgba(255,255,255,0.45);gap:0.5rem}
-.hero-photo-placeholder p{font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase}
-.hero-photo-placeholder small{font-size:0.58rem;opacity:0.55}
-.hero-fade{position:absolute;left:0;top:0;bottom:0;width:52%;background:linear-gradient(to right,var(--cream) 55%,transparent 100%);z-index:1}
-.hero-content{position:relative;z-index:2;padding:8rem 3rem 4rem;max-width:640px}
+/* fade dari kiri, teks overlay ke foto */
+.hero-fade{
+  position:absolute;inset:0;
+  background:linear-gradient(to right, rgba(250,250,247,0.97) 0%, rgba(250,250,247,0.85) 30%, rgba(250,250,247,0.4) 55%, transparent 100%);
+  z-index:1;
+}
+.hero-content{
+  position:relative;z-index:2;
+  padding:8rem 3rem 4rem;
+  margin-left:8%;
+  max-width:520px;
+}
 .hero-label{font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);font-weight:500;display:flex;align-items:center;gap:0.7rem;margin-bottom:1.6rem}
 .hero-label::before{content:'';width:20px;height:0.5px;background:var(--accent);display:block}
 .hero-head{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,5.5vw,6rem);font-weight:300;line-height:1.02;letter-spacing:-0.02em;color:var(--ink);margin-bottom:2rem}
@@ -109,12 +116,25 @@ footer{background:var(--ink);padding:1.5rem 3rem;display:flex;align-items:center
   .nav-desktop{display:none}
   .nav-mobile{display:block}
   body{padding-bottom:70px}
+
   .hero{min-height:100svh;align-items:flex-end}
-  .hero-photo{width:100%;height:60%;top:0;bottom:auto}
-  .hero-fade{width:100%;height:65%;top:auto;bottom:0;left:0;background:linear-gradient(to top,var(--cream) 60%,transparent 100%)}
-  .hero-content{padding:0 1.5rem 2.5rem;max-width:100%;width:100%}
+  .hero-photo{position:absolute;inset:0}
+  .hero-img{
+    object-fit:cover;
+    object-position:20% center; /* sisi kanan wajah = kiri frame, crop ~50% */
+  }
+  /* overlay gelap dari bawah supaya teks terbaca */
+  .hero-fade{
+    background:
+      linear-gradient(to top, rgba(250,250,247,0.97) 0%, rgba(250,250,247,0.88) 40%, rgba(250,250,247,0.3) 65%, transparent 100%);
+  }
+  .hero-content{
+    margin-left:0;
+    padding:0 1.5rem 2.5rem;
+    max-width:100%;width:100%;
+  }
   .hero-label{margin-bottom:0.8rem;font-size:0.62rem}
-  .hero-head{font-size:2.8rem;margin-bottom:1.4rem}
+  .hero-head{font-size:2.6rem;margin-bottom:1.4rem}
   .hero-desc{font-size:0.82rem;max-width:100%}
   .hero-cta{flex-direction:column;align-items:flex-start;gap:1rem}
   .btn-primary{width:100%;justify-content:center;padding:1rem 1.8rem}
@@ -198,8 +218,8 @@ footer{background:var(--ink);padding:1.5rem 3rem;display:flex;align-items:center
   </div>
   <div class="hero-fade"></div>
   <div class="hero-content">
-    <div class="hero-label" id="h-label">Yogyakarta, Indonesia</div>
-    <h1 class="hero-head" id="h-head">Hei —<br>ini <em>Stanly.</em></h1>
+    <div class="hero-label" id="h-label">Sic Parvis Magna</div>
+    <h1 class="hero-head" id="h-head">Salve! —<br>Gue <em>Stanly.</em></h1>
     <div class="hero-stats">
       <div class="stat-row">
         <div class="stat-body">
@@ -267,8 +287,8 @@ moreBtn.addEventListener('click',()=>toggleMore(true));
 moreOverlay.addEventListener('click',()=>toggleMore(false));
 
 const T={
-  id:{lang:'EN',about:'Tentang',label:'Yogyakarta, Indonesia',head:'Hei —<br>ini <em>Stanly.</em>',s2:'Digital marketing & brand communication',s3:'Konten strategis lintas platform & industri',desc:'Konten yang kuat bukan hanya estetik — punya arah dan tujuan jelas. Visual storyteller yang mengedepankan pendekatan kontekstual, konsisten, dan relevan.',btn:'Jelajahi',hire:'Hire Me',eye:'Jelajahi',c1:'Karya fotografi & penghargaan internasional dari 35Awards',c2:'Dengarkan di Spotify & Apple Music',c3:'Konten & karya video di YouTube',c4:'Layanan foto, konten & social media management',open:'Buka →',dlang:'Ganti Bahasa',dabout:'Tentang Saya',daboutsub:'Profil & perjalanan',dservices:'Services',dservicessub:'Foto, konten & social media',dcontact:'Contact',dcontactsub:'Hire Me · Kolaborasi',mhome:'Home',mmore:'More'},
-  en:{lang:'ID',about:'About',label:'Yogyakarta, Indonesia',head:"Hi —<br>it's <em>Stanly.</em>",s2:'Digital marketing & brand communication',s3:'Strategic content across platforms & industries',desc:"Great content isn't just aesthetic — it has clear direction and purpose. A visual storyteller with a contextual, consistent, and relevant approach.",btn:'Explore',hire:'Hire Me',eye:'Explore',c1:'Photography works & international awards from 35Awards',c2:'Listen on Spotify & Apple Music',c3:'Content & video works on YouTube',c4:'Photography, content & social media management services',open:'Open →',dlang:'Switch Language',dabout:'About Me',daboutsub:'Profile & journey',dservices:'Services',dservicessub:'Photo, content & social media',dcontact:'Contact',dcontactsub:'Hire Me · Collaborate',mhome:'Home',mmore:'More'}
+  id:{lang:'EN',about:'Tentang',label:'Sic Parvis Magna',head:'Salve! —<br>Gue <em>Stanly.</em>',s2:'Digital marketing & brand communication',s3:'Konten strategis lintas platform & industri',desc:'Konten yang kuat bukan hanya estetik — punya arah dan tujuan jelas. Visual storyteller yang mengedepankan pendekatan kontekstual, konsisten, dan relevan.',btn:'Jelajahi',hire:'Hire Me',eye:'Jelajahi',c1:'Karya fotografi & penghargaan internasional dari 35Awards',c2:'Dengarkan di Spotify & Apple Music',c3:'Konten & karya video di YouTube',c4:'Layanan foto, konten & social media management',open:'Buka →',dlang:'Ganti Bahasa',dabout:'Tentang Saya',daboutsub:'Profil & perjalanan',dservices:'Services',dservicessub:'Foto, konten & social media',dcontact:'Contact',dcontactsub:'Hire Me · Kolaborasi',mhome:'Home',mmore:'More'},
+  en:{lang:'ID',about:'About',label:'Sic Parvis Magna',head:"Salve! —<br>I'm <em>Stanly.</em>",s2:'Digital marketing & brand communication',s3:'Strategic content across platforms & industries',desc:"Great content isn't just aesthetic — it has clear direction and purpose. A visual storyteller with a contextual, consistent, and relevant approach.",btn:'Explore',hire:'Hire Me',eye:'Explore',c1:'Photography works & international awards from 35Awards',c2:'Listen on Spotify & Apple Music',c3:'Content & video works on YouTube',c4:'Photography, content & social media management services',open:'Open →',dlang:'Switch Language',dabout:'About Me',daboutsub:'Profile & journey',dservices:'Services',dservicessub:'Photo, content & social media',dcontact:'Contact',dcontactsub:'Hire Me · Collaborate',mhome:'Home',mmore:'More'}
 };
 let lang='id';
 function applyLang(l){
