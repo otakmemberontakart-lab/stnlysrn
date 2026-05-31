@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tentang — Stanly Serang</title>
+<title>Biografi — Stanly Serang</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -85,7 +85,7 @@ body{background:var(--cream);color:var(--ink);font-family:'DM Sans',sans-serif;o
 .skills-section{max-width:1200px;margin:0 auto;padding:5rem 3rem}
 .section-eyebrow{font-size:0.66rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);margin-bottom:2rem;display:flex;align-items:center;gap:0.6rem}
 .section-eyebrow::before{content:'';width:16px;height:0.5px;background:var(--accent);display:block}
-.skills-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;border:0.5px solid var(--border);background:var(--border)}
+.skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;border:0.5px solid var(--border);background:var(--border)}
 .skill-card{background:var(--white);padding:1.6rem 1.2rem;display:flex;flex-direction:column;align-items:center;gap:0.8rem;transition:background 0.2s}
 .skill-card:hover{background:var(--accent-pale)}
 .skill-icon-wrap{width:56px;height:56px;border-radius:50%;border:0.5px solid var(--border);overflow:hidden;display:flex;align-items:center;justify-content:center;background:var(--cream)}
@@ -121,6 +121,10 @@ body{background:var(--cream);color:var(--ink);font-family:'DM Sans',sans-serif;o
 .tl-company{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:400;color:#FAFAF7;margin-bottom:0.2rem}
 .tl-role{font-size:0.72rem;letter-spacing:0.06em;color:rgba(250,250,247,0.5);margin-bottom:0.4rem;text-transform:uppercase}
 .tl-desc{font-size:0.75rem;color:rgba(250,250,247,0.35);line-height:1.75}
+/* New format classes */
+.tl-achievement{font-size:0.7rem;letter-spacing:0.06em;color:rgba(250,250,247,0.9);margin-bottom:0.25rem;font-weight:500}
+.tl-venue{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:400;color:#FAFAF7;margin-bottom:0.25rem}
+.tl-sub{font-size:0.68rem;color:rgba(250,250,247,0.4);font-style:italic}
 .ov-note{margin-top:1rem;padding:1rem;border:0.5px solid rgba(250,250,247,0.08);font-size:0.68rem;color:rgba(250,250,247,0.25);line-height:1.7;font-style:italic}
 
 /* OVERLAY 2: Prestasi — split, teks kiri foto kanan */
@@ -180,7 +184,11 @@ footer{background:var(--ink);padding:1.2rem 3rem;display:flex;align-items:center
 
 <!-- NAV DESKTOP -->
 <nav class="nav-desktop">
-  <a class="nav-logo" href="main.html">SS</a>
+  <a class="nav-logo" href="main.html" style="display:flex;align-items:center;gap:0.6rem">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7H2M6 3L2 7l4 4"/></svg>
+    <span>SS</span>
+    <span style="font-family:'DM Sans',sans-serif;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-muted);font-weight:400">Menu Utama</span>
+  </a>
   <div class="nav-links">
     <a href="about.html" class="active">Tentang</a>
     <a href="photo.html">Photo</a>
@@ -314,9 +322,9 @@ footer{background:var(--ink);padding:1.2rem 3rem;display:flex;align-items:center
     <!-- Audio -->
     <div class="skill-card">
       <div class="skill-icon-wrap">
-        <img src="assets/images/icons/icon-flstudio.png" alt="Audio">
+        <img src="assets/images/icons/icon-flstudio.png" alt="FL Studio">
       </div>
-      <div class="skill-name">Audio</div>
+      <div class="skill-name">FL Studio</div>
     </div>
     <!-- Social Media -->
     <div class="skill-card">
@@ -325,12 +333,26 @@ footer{background:var(--ink);padding:1.2rem 3rem;display:flex;align-items:center
       </div>
       <div class="skill-name">Sosmed</div>
     </div>
-    <!-- AI -->
+    <!-- ChatGPT -->
     <div class="skill-card">
       <div class="skill-icon-wrap">
-        <img src="assets/images/icons/icon-chatgpt.png" alt="AI">
+        <img src="assets/images/icons/icon-chatgpt.png" alt="ChatGPT">
       </div>
-      <div class="skill-name">AI Tools</div>
+      <div class="skill-name">ChatGPT</div>
+    </div>
+    <!-- Claude -->
+    <div class="skill-card">
+      <div class="skill-icon-wrap">
+        <img src="assets/images/icons/icon-claude.png" alt="Claude">
+      </div>
+      <div class="skill-name">Claude</div>
+    </div>
+    <!-- Gemini -->
+    <div class="skill-card">
+      <div class="skill-icon-wrap">
+        <img src="assets/images/icons/icon-gemini.png" alt="Gemini">
+      </div>
+      <div class="skill-name">Gemini</div>
     </div>
   </div>
 </section>
@@ -408,70 +430,71 @@ footer{background:var(--ink);padding:1.2rem 3rem;display:flex;align-items:center
           <div class="tl-dot"></div>
           <div class="tl-body">
             <div class="tl-period">2014</div>
-            <div class="tl-company">Workshop & Lomba Desain Grafis</div>
-            <div class="tl-role">SMK Grafika Bina Media Medan — Juara 1</div>
+            <div class="tl-achievement">Juara 1</div>
+            <div class="tl-venue">Workshop & Lomba Desain Grafis</div>
+            <div class="tl-sub">Penyelenggara = SMK Grafika Bina Media Medan</div>
           </div>
         </div>
         <div class="tl-item">
           <div class="tl-dot"></div>
           <div class="tl-body">
             <div class="tl-period">2017</div>
-            <div class="tl-company">35Awards, Rusia</div>
-            <div class="tl-role">Top 20 Yogyakarta Photographer</div>
+            <div class="tl-achievement">Top 20 Yogyakarta Photographer</div>
+            <div class="tl-venue">35Awards, Rusia</div>
           </div>
         </div>
         <div class="tl-item">
           <div class="tl-dot"></div>
           <div class="tl-body">
             <div class="tl-period">2018</div>
-            <div class="tl-company">35Awards</div>
-            <div class="tl-role">Top 26% Theatrical Photography</div>
-            <div class="tl-desc" style="font-style:italic;color:rgba(250,250,247,0.45)">Bapak</div>
+            <div class="tl-achievement">Top 26% Theatrical Photography</div>
+            <div class="tl-venue">35Awards, Rusia</div>
+            <div class="tl-sub">Judul Karya = <em>Bapak</em></div>
           </div>
         </div>
         <div class="tl-item">
           <div class="tl-dot"></div>
           <div class="tl-body">
             <div class="tl-period">2019</div>
-            <div class="tl-company">35Awards</div>
-            <div class="tl-role">Top 31% Motion: Dance</div>
-            <div class="tl-desc" style="font-style:italic;color:rgba(250,250,247,0.45)">No Escape</div>
+            <div class="tl-achievement">Top 31% Motion: Dance</div>
+            <div class="tl-venue">35Awards, Rusia</div>
+            <div class="tl-sub">Judul Karya = <em>No Escape</em></div>
           </div>
         </div>
         <div class="tl-item">
           <div class="tl-dot"></div>
           <div class="tl-body">
             <div class="tl-period">2021</div>
-            <div class="tl-company">35Awards</div>
-            <div class="tl-role">Top 32% Concert Photography</div>
-            <div class="tl-desc" style="font-style:italic;color:rgba(250,250,247,0.45)">Stage</div>
+            <div class="tl-achievement">Top 32% Concert Photography</div>
+            <div class="tl-venue">35Awards, Rusia</div>
+            <div class="tl-sub">Judul Karya = <em>Stage</em></div>
           </div>
         </div>
         <div class="tl-item">
           <div class="tl-dot"></div>
           <div class="tl-body">
             <div class="tl-period">2022</div>
-            <div class="tl-company">35Awards</div>
-            <div class="tl-role">Top 30% Red Color Contest</div>
-            <div class="tl-desc" style="font-style:italic;color:rgba(250,250,247,0.45)">Red</div>
+            <div class="tl-achievement">Top 30% Red Color Contest</div>
+            <div class="tl-venue">35Awards, Rusia</div>
+            <div class="tl-sub">Judul Karya = <em>Red</em></div>
           </div>
         </div>
         <div class="tl-item">
           <div class="tl-dot"></div>
           <div class="tl-body">
             <div class="tl-period">2026</div>
-            <div class="tl-company">35Awards</div>
-            <div class="tl-role">Top 26% Theatrical Photography</div>
-            <div class="tl-desc" style="font-style:italic;color:rgba(250,250,247,0.45)">Bridled</div>
+            <div class="tl-achievement">Top 26% Theatrical Photography</div>
+            <div class="tl-venue">35Awards, Rusia</div>
+            <div class="tl-sub">Judul Karya = <em>Bridled</em></div>
           </div>
         </div>
         <div class="tl-item">
           <div class="tl-dot"></div>
           <div class="tl-body">
             <div class="tl-period">2026</div>
-            <div class="tl-company">35Awards</div>
-            <div class="tl-role">Top 11% Conceptual Shot</div>
-            <div class="tl-desc" style="font-style:italic;color:rgba(250,250,247,0.45)">The White Space</div>
+            <div class="tl-achievement">Top 11% Conceptual Shot</div>
+            <div class="tl-venue">35Awards, Rusia</div>
+            <div class="tl-sub">Judul Karya = <em>The White Space</em></div>
           </div>
         </div>
       </div>
@@ -501,109 +524,117 @@ footer{background:var(--ink);padding:1.2rem 3rem;display:flex;align-items:center
     </div>
     <div class="ov-exp-right">
       <div class="ov-title">Pengalaman Lainnya</div>
-      <div class="timeline">
+      <div class="timeline" id="tl-exp">
         <div class="tl-item">
           <div class="tl-dot"></div>
           <div class="tl-body">
             <div class="tl-period">2016 — 2017</div>
-            <div class="tl-company">Pameran Fotografi Geosumut & Karo Obscura</div>
-            <div class="tl-role">Sumatera Utara — Peserta Pameran</div>
+            <div class="tl-achievement">Peserta Pameran</div>
+            <div class="tl-venue">Pameran Fotografi Geosumut & Karo Obscura</div>
+            <div class="tl-sub">Lokasi = Sumatera Utara</div>
           </div>
         </div>
         <div class="tl-item">
           <div class="tl-dot"></div>
           <div class="tl-body">
             <div class="tl-period">2017</div>
-            <div class="tl-company">24 Hour Project: Documenting Humanity</div>
-            <div class="tl-role">Official Photographer Indonesia</div>
+            <div class="tl-achievement">Official Photographer Indonesia</div>
+            <div class="tl-venue">24 Hour Project: Documenting Humanity</div>
+            <div class="tl-sub">Project fotografi dokumentasi kemanusiaan internasional</div>
           </div>
         </div>
         <div class="tl-item">
           <div class="tl-dot"></div>
           <div class="tl-body">
             <div class="tl-period">2017</div>
-            <div class="tl-company">Asian Youth Day</div>
-            <div class="tl-role">Keuskupan Agung Medan — Camera Person</div>
+            <div class="tl-achievement">Camera Person</div>
+            <div class="tl-venue">Asian Youth Day — Video Clip Jingel</div>
+            <div class="tl-sub">Penyelenggara = Keuskupan Agung Medan</div>
           </div>
         </div>
         <div class="tl-item">
           <div class="tl-dot"></div>
           <div class="tl-body">
             <div class="tl-period">2017</div>
-            <div class="tl-company">Festival Teater Remaja Nusantara</div>
-            <div class="tl-role">ISI Yogyakarta — Koordinator Camera Person</div>
+            <div class="tl-achievement">Koordinator Camera Person</div>
+            <div class="tl-venue">Festival Teater Remaja Nusantara</div>
+            <div class="tl-sub">Lokasi = ISI Yogyakarta</div>
           </div>
         </div>
         <div class="tl-item">
           <div class="tl-dot"></div>
           <div class="tl-body">
             <div class="tl-period">2018</div>
-            <div class="tl-company">KAM Youth Day</div>
-            <div class="tl-role">Aek Kanopan, Sumatera Utara — Team Dokumenter</div>
+            <div class="tl-achievement">Team Dokumenter</div>
+            <div class="tl-venue">KAM Youth Day</div>
+            <div class="tl-sub">Lokasi = Aek Kanopan, Sumatera Utara</div>
           </div>
         </div>
         <div class="tl-item">
           <div class="tl-dot"></div>
           <div class="tl-body">
             <div class="tl-period">2019</div>
-            <div class="tl-company">Sanggar Seni Kinanti Sekar</div>
-            <div class="tl-role">Yogyakarta — Team Media</div>
+            <div class="tl-achievement">Team Media</div>
+            <div class="tl-venue">Sanggar Seni Kinanti Sekar</div>
+            <div class="tl-sub">Lokasi = Yogyakarta</div>
           </div>
         </div>
         <div class="tl-item">
           <div class="tl-dot"></div>
           <div class="tl-body">
             <div class="tl-period">2022</div>
-            <div class="tl-company">Komsos Broadcast</div>
-            <div class="tl-role">Gereja Katolik Pugeran Bantul — Team Live Streaming</div>
+            <div class="tl-achievement">Team Live Streaming</div>
+            <div class="tl-venue">Komsos Broadcast — YouTube Live</div>
+            <div class="tl-sub">Penyelenggara = Gereja Katolik Pugeran Bantul</div>
           </div>
         </div>
         <div class="tl-item">
           <div class="tl-dot"></div>
           <div class="tl-body">
             <div class="tl-period">2024</div>
-            <div class="tl-company">ISD Indonesia / @kursusapaaja</div>
-            <div class="tl-role">Freelance Instruktur Digital Marketing</div>
+            <div class="tl-achievement">Freelance Instruktur Digital Marketing</div>
+            <div class="tl-venue">ISD Indonesia / @kursusapaaja</div>
           </div>
         </div>
         <div class="tl-item">
           <div class="tl-dot"></div>
           <div class="tl-body">
             <div class="tl-period">2024</div>
-            <div class="tl-company">Acneno</div>
-            <div class="tl-role">Freelance Content Creator Affiliator</div>
+            <div class="tl-achievement">Freelance Content Creator Affiliator</div>
+            <div class="tl-venue">Acneno</div>
           </div>
         </div>
         <div class="tl-item">
           <div class="tl-dot"></div>
           <div class="tl-body">
             <div class="tl-period">2024</div>
-            <div class="tl-company">Enchante Studio</div>
-            <div class="tl-role">Freelance Content Creator Reels</div>
+            <div class="tl-achievement">Freelance Content Creator Reels</div>
+            <div class="tl-venue">Enchante Studio</div>
           </div>
         </div>
         <div class="tl-item">
           <div class="tl-dot"></div>
           <div class="tl-body">
             <div class="tl-period">2024</div>
-            <div class="tl-company">Lamban Garage</div>
-            <div class="tl-role">Freelance Content Creator</div>
+            <div class="tl-achievement">Freelance Content Creator</div>
+            <div class="tl-venue">Lamban Garage</div>
           </div>
         </div>
         <div class="tl-item">
           <div class="tl-dot"></div>
           <div class="tl-body">
             <div class="tl-period">2025</div>
-            <div class="tl-company">Pameran Foto "Menuju Kesebelasan"</div>
-            <div class="tl-role">Kelas Pagi Yogyakarta — Peserta Pameran</div>
+            <div class="tl-achievement">Peserta Pameran</div>
+            <div class="tl-venue">Pameran Foto "Menuju Kesebelasan"</div>
+            <div class="tl-sub">Penyelenggara = Kelas Pagi Yogyakarta</div>
           </div>
         </div>
         <div class="tl-item">
           <div class="tl-dot"></div>
           <div class="tl-body">
             <div class="tl-period">2025</div>
-            <div class="tl-company">SÉNA kopi & pâtisserie</div>
-            <div class="tl-role">Freelance Asst. Marcom & Content Creator</div>
+            <div class="tl-achievement">Freelance Asst. Marcom & Content Creator</div>
+            <div class="tl-venue">SÉNA kopi & pâtisserie</div>
           </div>
         </div>
       </div>
